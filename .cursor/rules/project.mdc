@@ -1,0 +1,23 @@
+---
+description: Conventions for this NestJS service
+alwaysApply: true
+---
+
+# Project conventions
+
+- Prefer a small, maintainable change.
+- The current feature request lives in ASSIGNMENT.md. Plan it with the plan-feature skill before changing application code.
+- Match the structure of `src/modules/note` when adding a feature.
+- HTTP stays in controllers. Business logic stays in services. Database access goes through Prisma.
+- Validate every external input with a DTO.
+- Every schema change has a migration.
+- Cover new behavior with tests. Do not change a test so that broken behavior passes.
+- Stay on TypeScript strict. Do not use `any`.
+- Do not add dependencies or new layers unless the requested feature requires them.
+
+Copy `src/modules/note` for a new feature:
+
+- `note.controller.ts` accepts the HTTP request and returns the response.
+- `note.service.ts` holds the business logic and is the only place that calls Prisma.
+- `dto/create-note.dto.ts` validates external input.
+- `note.service.spec.ts` and `note.controller.spec.ts` cover that behavior.
